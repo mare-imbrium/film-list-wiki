@@ -92,8 +92,18 @@ while [[ $1 = -* ]]; do
             $0 Streep "De Niro"
             $0 scifi | less -S
             $0 2013 Hanks | less -S
+            $0 Dog   # This will search for Dog in title and names
+
+            $0 --director Eastwood
+            $0 --actor "De Niro"
+            $0 --genre scifi --director Kubrick
+            $0 --title Dog   # search for Dog only in titles
 
             Options:
+            -d, --director STR Search for STR only in director
+            -a, --actor STR   Search for STR only in actor
+            -t, --title STR   Search for STR only in title
+            -g, --genre STR   Search for STR only in genre
             -l, --long        Long listing, all columns
             -H, --header      Print header (for csvlook)
             -c, --count       Print rowcount at end
@@ -117,32 +127,16 @@ while [[ $1 = -* ]]; do
     esac
 done
 
-#if [[ -n "$AWK_STR" ]]; then
-    #STR=$(echo "$AWK_STR" | sed 's|@|$|g;s/ &&//;s/^/(/;s/$/)/;')
-    #awk -F$'\t' "$STR" $file
-    # we need to integrate this with the rest since user may pass some free search strings
-#fi
-#if [  $# -eq 0 ]; then
-    #echo -e "Please pass one or more search terms such as part of title or name of actor/director, or year." 1<&2
-    #exit 1
-#fi
-
-# We are ANDing the search terms. all must be found.
-# It would be better to do awk '/string1/ && /string3/' file
-# I need to build that.
+if [  $# -eq 0 && -z "$AWK_STR" ]; then
+    echo "Please pass some strings to filter on. Try $0 --help"
+    exit 1
+fi
 for var in "$@"
 do
     AWK_STR="${AWK_STR} && @0 ~ /$var/"
 done
 STR=$(echo "$AWK_STR" | sed 's|@|$|g;s/ &&//;s/^/(/;s/$/)/;')
 text=$( awk -F$'\t' $AWK_FLAGS "$STR" $file | cut -f1,3- | sort -k2,2 -t$'\t' )
-#arg1=$1
-#shift
-#text=$( grep -h $GREP_FLAGS "$arg1" $file | cut -f1,3- | sort -k2,2 -t$'\t')
-#for var in "$@"
-#do
-    #text=$(echo "$text" | grep $GREP_FLAGS "$var")
-#done
 
 header="Title${DELIM}Year${DELIM}Director${DELIM}Actors${DELIM}Genre${DELIM}Notes-up${DELIM}Country"
 heade1="-----${DELIM}----${DELIM}--------${DELIM}------${DELIM}-----${DELIM}--------${DELIM}-------"
