@@ -14,7 +14,19 @@ The other output is film.tsv or all_films.tsv which also has year, director and 
 The issue with the latter is that different years have different file formats so parsing changes. There is also a difference in the UK and USA htmls. THis means that the formats  can continue to change over time and they are updated.
 The source wikipedia files are still in process, so the formats will change.
 
-However, this database is still great for searchign movies for directors and actors.
+However, this database is still great for searching movies for directors and actors.
+
+## TODO
+
+## ISSUES WITH DATA
+
+- standardize the genre. e.g. there is sci-fi, scifi and science fiction.  DONE
+- often the same movie comes under US and UK. Since there is a difference in the number of actors i don't want to delete one of the rows.
+
+## QUERY:
+
+- qfilm.sh = be able to specify director or genre in query. Should we do that in the database version of the query. DONE.
+
 
 
 ## HOWTO
