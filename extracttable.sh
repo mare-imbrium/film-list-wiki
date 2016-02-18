@@ -14,21 +14,24 @@
 #        AUTHOR: YOUR NAME (), 
 #  ORGANIZATION: 
 #       CREATED: 01/27/2016 23:37
-#      REVISION:  2016-02-16 19:31
+#      REVISION:  2016-02-18 10:41
 #===============================================================================
 
-year=2016
+year=$(date +%Y)
+SOURCE="./html"
+TARGET="./tbl"
+echo "Starting with $year working back to 1930"
 
 while [ $year -gt 1930 ] ; do
-    url="${year}.html"
+    url="${SOURCE}/${year}.html"
     echo $url
     #sed -n '/<table class="wikitable sortable"/,/<\/table>/p' $url > "${year}.tbl"
     # 1997.html and earlier don't have sortable
-    sed -n '/<table class="wikitable/,/<\/table>/p' $url > "${year}.tbl"
-    wc -l "$year.tbl"
+    sed -n '/<table class="wikitable/,/<\/table>/p' $url > "${TARGET}/${year}.tbl"
+    wc -l "${TARGET}/$year.tbl"
     (( year-- ))
 done
 
 echo "checking if gross rank data has come in . e.g. 1961 1962, pls remove that table"
-grep '<th>Rank' *.tbl
-grep '<th>Gross' *.tbl
+grep '<th>Rank' ${TARGET}/*.tbl
+grep '<th>Gross' ${TARGET}/*.tbl
