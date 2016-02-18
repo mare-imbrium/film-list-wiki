@@ -14,16 +14,21 @@
 #        AUTHOR: YOUR NAME (), 
 #  ORGANIZATION: 
 #       CREATED: 01/27/2016 23:37
-#      REVISION:  2016-02-16 19:30
+#      REVISION:  2016-02-18 10:37
 #===============================================================================
 
-year=2016
+year=$(date +%Y)
+echo starting with $year
 host=https://en.wikipedia.org/wiki/List_of_American_films_of_
+
+TARGET=html
+mkdir $TARGET
+echo downloading to dir $TARGET
 
 while [ $year -gt 1930 ] ; do
     url="${host}${year}"
     echo $url
-    curl "$url" > ${year}.html
+    curl "$url" > ./${TARGET}/${year}.html
     sleep 3
     (( year-- ))
 done
