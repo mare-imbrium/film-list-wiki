@@ -12,14 +12,14 @@
 #          BUGS: ---
 #          1. if no rows, gives 1 as count due to newline in echo
 #         NOTES: ---
-#         TODO   query specifying director or genre. 
+#         TODO   
 #        AUTHOR: senti
 #  ORGANIZATION: 
 #       CREATED: 02/11/2016 12:38
 #      REVISION:  2016-02-17 10:41
 #===============================================================================
 
-
+VERSION="1.0.0"
 cd $FILM_DATA_DIR
 file=./all_film.tsv
 if [[ ! -f "$file" ]]; then
@@ -83,7 +83,7 @@ while [[ $1 = -* ]]; do
             ;;
         -h|--help)
             cat <<-! | sed 's|^     ||g'
-            $0 Version: 1.0.0 Copyright (C) 2016 senti
+            $0 Version: $VERSION Copyright (C) 2016 senti
             This program prints film information using arguments as filtering criteria.
             It prints rows that match all criteria.
 
