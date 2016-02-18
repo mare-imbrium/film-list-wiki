@@ -1,4 +1,13 @@
-# HOWTO
+# UK FILMS LIST
+
+## CHANGELOG
+
+- 2016-02-18 - moved html to ./html and tbl files to ./tbl and modified programs
+               earlier YEAR was hardcoded to 2016, now taking from `date +%Y`
+
+               NOT TESTED.
+
+## HOWTO
 
 1. first download all files for UK using  ../download_uk.sh
 2. ./extracttable_uk.sh to create tbl files
@@ -6,7 +15,7 @@
 3a. verify columns are okay since format could change
     cat film.tsv COL L
 
-4. insert into database along with US movies
+4. insert into database along with US movies using combine.sh
 
 ## NOTES
 
