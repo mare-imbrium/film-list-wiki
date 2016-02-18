@@ -20,6 +20,7 @@
 #===============================================================================
 
 VERSION="1.0.0"
+APPNAME=$( basename $0 )
 cd $FILM_DATA_DIR
 file=./all_film.tsv
 if [[ ! -f "$file" ]]; then
@@ -83,21 +84,21 @@ while [[ $1 = -* ]]; do
             ;;
         -h|--help)
             cat <<-! | sed 's|^     ||g'
-            $0 Version: $VERSION Copyright (C) 2016 senti
+            $APPNAME Version: $VERSION Copyright (C) 2016 senti
             This program prints film information using arguments as filtering criteria.
             It prints rows that match all criteria.
 
             Usage:
-            $0 Streep
-            $0 Streep "De Niro"
-            $0 scifi | less -S
-            $0 2013 Hanks | less -S
-            $0 Dog   # This will search for Dog in title and names
+            $APPNAME Streep
+            $APPNAME Streep "De Niro"
+            $APPNAME scifi | less -S
+            $APPNAME 2013 Hanks | less -S
+            $APPNAME Dog   # This will search for Dog in title and names
 
-            $0 --director Eastwood
-            $0 --actor "De Niro"
-            $0 --genre scifi --director Kubrick
-            $0 --title Dog   # search for Dog only in titles
+            $APPNAME --director Eastwood
+            $APPNAME --actor "De Niro"
+            $APPNAME --genre scifi --director Kubrick
+            $APPNAME --title Dog   # search for Dog only in titles
 
             Options:
             -d, --director STR Search for STR only in director
@@ -120,7 +121,7 @@ while [[ $1 = -* ]]; do
             exit
             ;;
         *)
-            echo "$0: Error: Unknown option: $1" >&2   
+            echo "$APPNAME: Error: Unknown option: $1" >&2   
             echo "Use -h or --help for usage" 1>&2
             exit 1
             ;;
@@ -128,7 +129,7 @@ while [[ $1 = -* ]]; do
 done
 
 if [  $# -eq 0 && -z "$AWK_STR" ]; then
-    echo "Please pass some strings to filter on. Try $0 --help"
+    echo "Please pass some strings to filter on. Try $APPNAME --help"
     exit 1
 fi
 for var in "$@"
