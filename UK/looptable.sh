@@ -14,14 +14,14 @@
 #        AUTHOR: YOUR NAME (), 
 #  ORGANIZATION: 
 #       CREATED: 01/29/2016 15:11
-#      REVISION:  2016-02-04 14:43
+#      REVISION:  2016-02-18 10:51
 #===============================================================================
 out=film.tsv
 #DIR=/Volumes/Pacino/dziga_backup/rahul/Downloads/MOV/amerfilms
 if [[  -f "$out" ]]; then
     rm $out
 fi
-for file in *.tbl ; do
+for file in tbl/*.tbl ; do
     echo $file
     ./table_uk.rb $file >> $out
 done
@@ -38,7 +38,7 @@ echo done
 wc -l $out
 echo "Checking for movies without a url"
 echo "In such cases, actor will comes as movie"
-grep '^<td><i>[^<]' *.tbl
+grep '^<td><i>[^<]' tbl/*.tbl
 echo
 echo Now you may import into database to check ./import_films.sh
 echo if all okay, run combine.sh in the parent directory AFTER running looptable.sh in the parent
