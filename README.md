@@ -2,7 +2,7 @@
 
 ## List of films and urls
 
-This is meant to be a comprehensive list of American and British films with their wikipedia
+This is meant to be a *pretty* comprehensive list of American and British films with their wikipedia
 URLS.
 
 There are two directories here, American films and British films.
@@ -35,22 +35,52 @@ Keep re-running every two months to get updates after backing up earlier file. F
 
 ## QUERY:
 
-- qfilm.sh = be able to specify director or genre in query. Should we do that in the database version of the query. DONE.
+- qfilm.sh : use this to query. qfilm.sh --help to see options.
 
+ (The following is an output of --help and may be outdated. I have linked qfilm to qfilm.sh)
+
+
+       qfilm Version: 1.0.0 Copyright (C) 2016 
+       This program prints film information using arguments as filtering criteria.
+       It prints rows that match all criteria.
+
+       Usage:
+       qfilm Streep
+       qfilm Streep "De Niro"
+       qfilm scifi | less -S
+       qfilm 2013 Hanks | less -S
+       qfilm Dog   # This will search for Dog in title and names
+
+       qfilm --title Dog   # search for Dog only in titles
+       qfilm --director Eastwood
+       qfilm --actor "De Niro"
+       qfilm --genre scifi --director Kubrick
+
+       Options:
+       -d, --director STR Search for STR only in director
+       -a, --actor STR   Search for STR only in actor
+       -t, --title STR   Search for STR only in title
+       -g, --genre STR   Search for STR only in genre
+       -l, --long        Long listing, all columns
+       -H, --header      Print header (for csvlook)
+       -c, --count       Print rowcount at end
+       -i, --ignore-case case insensitive search
+       -V, --verbose     Displays more information
+           --debug       Displays debug information
 
 
 ## HOWTO
 
 See instruction in the README of the UK directory. they should hold true here also.
 
-# download files
-./download.sh 
-# extract table from html -> tbl files
-./extracttable.sh
-# loop and create TSV files (uses table.rb)
-./looptable.sh
-
-./combine.sh to combine US and UK and then import into db.
+- download files
+    ./download.sh 
+- extract table from html -> tbl files
+    ./extracttable.sh
+- loop and create TSV files (uses table.rb)
+    ./looptable.sh
+- To combine US and UK and then import into db.
+    ./combine.sh 
 
 
 ## NOTES
