@@ -74,12 +74,19 @@ Keep re-running every two months to get updates after backing up earlier file. F
 See instruction in the README of the UK directory. they should hold true here also.
 
 - download files
+
     ./download.sh 
+
 - extract table from html -> tbl files
+
     ./extracttable.sh
+
 - loop and create TSV files (uses table.rb)
+
     ./looptable.sh
+
 - To combine US and UK and then import into db.
+
     ./combine.sh 
 
 
