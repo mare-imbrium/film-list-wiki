@@ -22,13 +22,13 @@
 
 
 echo extracting US urls
-grep '<td><i><a href' *.tbl | gsed 's|\(^....\).*href="\([^"]*\)".*>\(.*\)</a>.*|\3	\1	USA	\2|' | grep -v "index.php" | sort -u  > us_urls.tsv
+grep '<td><i><a href' tbl/*.tbl | gsed 's|\(^....\).*href="\([^"]*\)".*>\(.*\)</a>.*|\3	\1	USA	\2|' | grep -v "index.php" | sort -u  > us_urls.tsv
 wc -l us_urls.tsv
 cd UK
 pwd
 echo extracting UK urls
 # if we extract from the html then we need to do a sort unique
-grep '<td><i><a href' *.html | gsed 's|\(^....\).*href="\([^"]*\)".*>\(.*\)</a>.*|\3	\1	UK	\2|' | grep -v "index.php" | sort -u  > uk_urls.tsv
+grep '<td><i><a href' html/*.html | gsed 's|\(^....\).*href="\([^"]*\)".*>\(.*\)</a>.*|\3	\1	UK	\2|' | grep -v "index.php" | sort -u  > uk_urls.tsv
 
 wc -l uk_urls.tsv
 cd ..
