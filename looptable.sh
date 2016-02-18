@@ -14,14 +14,14 @@
 #        AUTHOR: YOUR NAME (), 
 #  ORGANIZATION: 
 #       CREATED: 01/29/2016 15:11
-#      REVISION:  2016-02-16 19:34
+#      REVISION:  2016-02-18 10:42
 #===============================================================================
 out=film.tsv
 DIR=/Volumes/Pacino/dziga_backup/rahul/Downloads/MOV/amerfilms
 if [[  -f "$out" ]]; then
     rm $out
 fi
-for file in *.tbl ; do
+for file in $DIR/tbl/*.tbl ; do
     echo $file
     $DIR/table.rb $file >> $out
 done
