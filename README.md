@@ -16,11 +16,21 @@ The source wikipedia files are still in process, so the formats will change.
 
 However, this database is still great for searching movies for directors and actors.
 
+
+## CHANGELOG
+
+- 2016-02-18 - moved html to ./html and tbl files to ./tbl and modified programs
+               earlier YEAR was hardcoded to 2016, now taking from `date +%Y`
+
+               NOT TESTED.
+
 ## TODO
+
+Keep re-running every two months to get updates after backing up earlier file. Format of htmls could keep changing so this can be a major issue. Currently, many movies are missing from their lists. So a listing of movies for an actor or director is not exhaustive.
 
 ## ISSUES WITH DATA
 
-- standardize the genre. e.g. there is sci-fi, scifi and science fiction.  DONE
+- standardize the genre. e.g. there is sci-fi, scifi and science fiction.  DONE MANUALLY.
 - often the same movie comes under US and UK. Since there is a difference in the number of actors i don't want to delete one of the rows.
 
 ## QUERY:
@@ -32,6 +42,16 @@ However, this database is still great for searching movies for directors and act
 ## HOWTO
 
 See instruction in the README of the UK directory. they should hold true here also.
+
+# download files
+./download.sh 
+# extract table from html -> tbl files
+./extracttable.sh
+# loop and create TSV files (uses table.rb)
+./looptable.sh
+
+./combine.sh to combine US and UK and then import into db.
+
 
 ## NOTES
 
